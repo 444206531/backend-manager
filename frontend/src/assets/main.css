@@ -1,0 +1,36 @@
+/* frontend/src/assets/main.css */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50; /* Default text color from Vue scaffold */
+}
+
+#app {
+  /* You can keep #app specific styles from App.vue here if preferred,
+     or leave them in App.vue if they are tightly coupled to its structure.
+     For a cleaner main.css, styles specific to App.vue's template can remain there.
+     The font-family, -webkit-font-smoothing, -moz-osx-font-smoothing, color
+     are good candidates for global body styles as set above. */
+}
+
+/* Optional: Basic scrollbar styling for a more consistent look (Works in WebKit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

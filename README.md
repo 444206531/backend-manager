@@ -139,3 +139,116 @@ The sample `User` module provides the following endpoints:
 ---
 
 This framework provides a starting point. You can extend it by adding more features like security (Spring Security), validation, caching, etc.
+
+---
+
+## Frontend Admin System (Vue 3 + TypeScript + Element Plus)
+
+The frontend application is located in the `frontend/` directory. It's built with Vue 3, TypeScript, Vite, and uses Element Plus for UI components.
+
+### Frontend Prerequisites
+
+*   Node.js (LTS version, e.g., 18.x or 20.x)
+*   npm or yarn (or pnpm)
+
+### Frontend Project Structure (`frontend/`)
+
+```
+frontend/
+├── public/                 # Static assets (favicon, etc.)
+├── src/
+│   ├── api/                # API service modules (Axios)
+│   ├── assets/             # CSS, images, fonts
+│   ├── components/         # Reusable Vue components
+│   ├── layouts/            # Main application layout(s)
+│   ├── router/             # Vue Router configuration
+│   ├── store/              # Pinia state management stores
+│   ├── types/              # TypeScript type definitions
+│   ├── views/              # Page-level Vue components
+│   ├── App.vue             # Root Vue component
+│   ├── main.ts             # Application entry point
+│   └── shims-vue.d.ts      # Vue component type shims
+├── index.html              # Vite entry HTML
+├── package.json            # Project dependencies and scripts
+├── vite.config.ts          # Vite configuration (build, dev server, proxy)
+├── tsconfig.json           # TypeScript configuration
+└── README.md               # (Optional: could have a more detailed frontend-specific README here)
+```
+
+### Frontend Setup and Configuration
+
+1.  **Navigate to the frontend directory:**
+    ```bash
+    cd frontend
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    # yarn install
+    # or
+    # pnpm install
+    ```
+
+3.  **Backend API Configuration (for Development):**
+    The frontend development server (Vite) is configured to proxy API requests from `/api` to the backend server. By default, it assumes the backend is running at `http://localhost:8080`.
+    If your backend runs on a different port or host, update the `target` in the `server.proxy` section of `frontend/vite.config.ts`:
+    ```typescript
+    // frontend/vite.config.ts
+    // ...
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://your-backend-host:your-backend-port', // Change this
+          changeOrigin: true,
+        }
+      }
+    }
+    // ...
+    ```
+
+4.  **Backend API Configuration (for Production):**
+    When building the frontend for production, the `baseURL` for API calls in `frontend/src/api/axiosInstance.ts` is set to `/api`. This assumes your production deployment will serve the frontend and backend under the same domain, with API requests to `/api/...` correctly routed to the backend service (e.g., via a reverse proxy like Nginx).
+    If your production API is on a completely different domain, you'll need to adjust `axiosInstance.defaults.baseURL` in `frontend/src/api/axiosInstance.ts` to the absolute API URL before building for production.
+
+### Running the Frontend Development Server
+
+1.  Ensure the backend application is running and accessible (especially if the frontend makes API calls on startup).
+2.  Navigate to the `frontend/` directory.
+3.  Run the Vite development server:
+    ```bash
+    npm run dev
+    # or
+    # yarn dev
+    # or
+    # pnpm dev
+    ```
+    The application should typically be available at `http://localhost:5173` (Vite's default port, but it will show the correct URL in the terminal).
+
+### Building the Frontend for Production
+
+1.  Navigate to the `frontend/` directory.
+2.  Run the build script:
+    ```bash
+    npm run build
+    # or
+    # yarn build
+    # or
+    # pnpm build
+    ```
+    This will generate a `dist/` directory within `frontend/` containing the optimized static assets for deployment.
+
+### Frontend Linting and Type Checking
+
+*   To run TypeScript type checking (as part of the build script):
+    ```bash
+    npm run build 
+    # (vue-tsc --noEmit is part of the build script)
+    ```
+*   For standalone type checking:
+    ```bash
+    # Add to package.json scripts: "type-check": "vue-tsc --noEmit"
+    # Then run: npm run type-check
+    ```
+*   Linting (ESLint, Prettier) is not yet configured in this base framework but can be added.
