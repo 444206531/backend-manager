@@ -22,14 +22,14 @@ A Spring Boot-based backend framework for admin systems, built with Java 17, Spr
 ## Project Structure
 
 ```
-admin-system/
+backend-manager/
 ├── pom.xml                 # Maven project configuration
 └── src/
     ├── main/
     │   ├── java/
     │   │   └── com/
     │   │       └── example/
-    │   │           └── adminsystem/
+    │   │           └── adminsystem/  # Java package structure remains the same
     │   │               ├── AdminSystemApplication.java # Main application class
     │   │               ├── config/         # Spring configurations (MyBatisPlus, WebMvc)
     │   │               ├── controller/     # REST API controllers
@@ -51,7 +51,7 @@ admin-system/
 1.  **Database Setup**:
     *   Ensure you have a MySQL instance running.
     *   Create a database for this application, e.g., `admin_system`.
-    *   Open `src/main/resources/application.properties`.
+    *   Open `backend-manager/src/main/resources/application.properties`.
     *   Update the following properties with your MySQL details:
         ```properties
         spring.datasource.url=jdbc:mysql://localhost:3306/admin_system?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
@@ -72,7 +72,7 @@ admin-system/
 1.  **Clone the repository:**
     ```bash
     git clone <repository_url>
-    cd admin-system
+    cd backend-manager
     ```
 
 2.  **Build the project using Maven:**
@@ -86,7 +86,7 @@ admin-system/
     ```
     Alternatively, you can run the packaged JAR file:
     ```bash
-    java -jar target/admin-system-0.0.1-SNAPSHOT.jar
+    java -jar backend-manager/target/admin-system-0.0.1-SNAPSHOT.jar
     ```
 
 The application should now be running and accessible at `http://localhost:8080`.
@@ -144,17 +144,17 @@ This framework provides a starting point. You can extend it by adding more featu
 
 ## Frontend Admin System (Vue 3 + TypeScript + Element Plus)
 
-The frontend application is located in the `frontend/` directory. It's built with Vue 3, TypeScript, Vite, and uses Element Plus for UI components.
+The frontend application is located in the `frontend-manager/frontend/` directory. It's built with Vue 3, TypeScript, Vite, and uses Element Plus for UI components.
 
 ### Frontend Prerequisites
 
 *   Node.js (LTS version, e.g., 18.x or 20.x)
 *   npm or yarn (or pnpm)
 
-### Frontend Project Structure (`frontend/`)
+### Frontend Project Structure (`frontend-manager/frontend/`)
 
 ```
-frontend/
+frontend-manager/frontend/
 ├── public/                 # Static assets (favicon, etc.)
 ├── src/
 │   ├── api/                # API service modules (Axios)
@@ -179,7 +179,7 @@ frontend/
 
 1.  **Navigate to the frontend directory:**
     ```bash
-    cd frontend
+    cd frontend-manager/frontend
     ```
 
 2.  **Install dependencies:**
@@ -193,9 +193,9 @@ frontend/
 
 3.  **Backend API Configuration (for Development):**
     The frontend development server (Vite) is configured to proxy API requests from `/api` to the backend server. By default, it assumes the backend is running at `http://localhost:8080`.
-    If your backend runs on a different port or host, update the `target` in the `server.proxy` section of `frontend/vite.config.ts`:
+    If your backend runs on a different port or host, update the `target` in the `server.proxy` section of `frontend-manager/frontend/vite.config.ts`:
     ```typescript
-    // frontend/vite.config.ts
+    // frontend-manager/frontend/vite.config.ts
     // ...
     server: {
       proxy: {
@@ -209,13 +209,13 @@ frontend/
     ```
 
 4.  **Backend API Configuration (for Production):**
-    When building the frontend for production, the `baseURL` for API calls in `frontend/src/api/axiosInstance.ts` is set to `/api`. This assumes your production deployment will serve the frontend and backend under the same domain, with API requests to `/api/...` correctly routed to the backend service (e.g., via a reverse proxy like Nginx).
-    If your production API is on a completely different domain, you'll need to adjust `axiosInstance.defaults.baseURL` in `frontend/src/api/axiosInstance.ts` to the absolute API URL before building for production.
+    When building the frontend for production, the `baseURL` for API calls in `frontend-manager/frontend/src/api/axiosInstance.ts` is set to `/api`. This assumes your production deployment will serve the frontend and backend under the same domain, with API requests to `/api/...` correctly routed to the backend service (e.g., via a reverse proxy like Nginx).
+    If your production API is on a completely different domain, you'll need to adjust `axiosInstance.defaults.baseURL` in `frontend-manager/frontend/src/api/axiosInstance.ts` to the absolute API URL before building for production.
 
 ### Running the Frontend Development Server
 
 1.  Ensure the backend application is running and accessible (especially if the frontend makes API calls on startup).
-2.  Navigate to the `frontend/` directory.
+2.  Navigate to the `frontend-manager/frontend/` directory.
 3.  Run the Vite development server:
     ```bash
     npm run dev
@@ -228,7 +228,7 @@ frontend/
 
 ### Building the Frontend for Production
 
-1.  Navigate to the `frontend/` directory.
+1.  Navigate to the `frontend-manager/frontend/` directory.
 2.  Run the build script:
     ```bash
     npm run build
@@ -237,7 +237,7 @@ frontend/
     # or
     # pnpm build
     ```
-    This will generate a `dist/` directory within `frontend/` containing the optimized static assets for deployment.
+    This will generate a `dist/` directory within `frontend-manager/frontend/` containing the optimized static assets for deployment.
 
 ### Frontend Linting and Type Checking
 
