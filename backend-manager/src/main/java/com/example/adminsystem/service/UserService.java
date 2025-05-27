@@ -1,14 +1,11 @@
 package com.example.adminsystem.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.adminsystem.dto.UserRegistrationDto;
 import com.example.adminsystem.entity.User;
-
-import java.util.List;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface UserService extends IService<User> {
-    // IService already provides common CRUD methods.
-    // Add custom service methods here if needed.
-    // For example:
-    // User findByUsername(String username);
-    // List<User> findActiveUsers();
+    User register(UserRegistrationDto registrationDto);
+    User findByUsername(String username);
+    // void assignRoleToUser(Long userId, Long roleId); // 先注释掉，后续RBACService中实现或调用
 }

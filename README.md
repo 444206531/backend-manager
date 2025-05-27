@@ -144,17 +144,17 @@ This framework provides a starting point. You can extend it by adding more featu
 
 ## Frontend Admin System (Vue 3 + TypeScript + Element Plus)
 
-The frontend application is located in the `frontend-manager/frontend/` directory. It's built with Vue 3, TypeScript, Vite, and uses Element Plus for UI components.
+The frontend application is located in the `frontend-manager/` directory. It's built with Vue 3, TypeScript, Vite, and uses Element Plus for UI components.
 
 ### Frontend Prerequisites
 
 *   Node.js (LTS version, e.g., 18.x or 20.x)
 *   npm or yarn (or pnpm)
 
-### Frontend Project Structure (`frontend-manager/frontend/`)
+### Frontend Project Structure (`frontend-manager/`)
 
 ```
-frontend-manager/frontend/
+frontend-manager/
 ├── public/                 # Static assets (favicon, etc.)
 ├── src/
 │   ├── api/                # API service modules (Axios)
@@ -179,7 +179,7 @@ frontend-manager/frontend/
 
 1.  **Navigate to the frontend directory:**
     ```bash
-    cd frontend-manager/frontend
+    cd frontend-manager
     ```
 
 2.  **Install dependencies:**
@@ -193,9 +193,9 @@ frontend-manager/frontend/
 
 3.  **Backend API Configuration (for Development):**
     The frontend development server (Vite) is configured to proxy API requests from `/api` to the backend server. By default, it assumes the backend is running at `http://localhost:8080`.
-    If your backend runs on a different port or host, update the `target` in the `server.proxy` section of `frontend-manager/frontend/vite.config.ts`:
+    If your backend runs on a different port or host, update the `target` in the `server.proxy` section of `frontend-manager/vite.config.ts`:
     ```typescript
-    // frontend-manager/frontend/vite.config.ts
+    // frontend-manager/vite.config.ts
     // ...
     server: {
       proxy: {
@@ -209,13 +209,13 @@ frontend-manager/frontend/
     ```
 
 4.  **Backend API Configuration (for Production):**
-    When building the frontend for production, the `baseURL` for API calls in `frontend-manager/frontend/src/api/axiosInstance.ts` is set to `/api`. This assumes your production deployment will serve the frontend and backend under the same domain, with API requests to `/api/...` correctly routed to the backend service (e.g., via a reverse proxy like Nginx).
-    If your production API is on a completely different domain, you'll need to adjust `axiosInstance.defaults.baseURL` in `frontend-manager/frontend/src/api/axiosInstance.ts` to the absolute API URL before building for production.
+    When building the frontend for production, the `baseURL` for API calls in `frontend-manager/src/api/axiosInstance.ts` is set to `/api`. This assumes your production deployment will serve the frontend and backend under the same domain, with API requests to `/api/...` correctly routed to the backend service (e.g., via a reverse proxy like Nginx).
+    If your production API is on a completely different domain, you'll need to adjust `axiosInstance.defaults.baseURL` in `frontend-manager/src/api/axiosInstance.ts` to the absolute API URL before building for production.
 
 ### Running the Frontend Development Server
 
 1.  Ensure the backend application is running and accessible (especially if the frontend makes API calls on startup).
-2.  Navigate to the `frontend-manager/frontend/` directory.
+2.  Navigate to the `frontend-manager/` directory.
 3.  Run the Vite development server:
     ```bash
     npm run dev
@@ -228,7 +228,7 @@ frontend-manager/frontend/
 
 ### Building the Frontend for Production
 
-1.  Navigate to the `frontend-manager/frontend/` directory.
+1.  Navigate to the `frontend-manager/` directory.
 2.  Run the build script:
     ```bash
     npm run build
@@ -237,7 +237,7 @@ frontend-manager/frontend/
     # or
     # pnpm build
     ```
-    This will generate a `dist/` directory within `frontend-manager/frontend/` containing the optimized static assets for deployment.
+    This will generate a `dist/` directory within `frontend-manager/` containing the optimized static assets for deployment.
 
 ### Frontend Linting and Type Checking
 
